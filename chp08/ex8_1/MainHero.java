@@ -5,6 +5,7 @@ public class MainHero {
         Hero ironMan = new Hero("아이언맨", 100, 130);
         Hero hulk = new Hero("헐크", 200, 100);
 
+
         System.out.println(ironMan);
         System.out.println(hulk);
 

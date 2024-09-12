@@ -5,6 +5,8 @@ public class Hero {
     int power;
     int speed;
 
+
+
     public Hero(String name){
         this.name = name;
     }
