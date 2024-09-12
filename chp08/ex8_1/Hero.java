@@ -28,5 +28,5 @@ public class Hero {
                 ", speed=" + speed +
                 '}';
     }
-    //문자열 형태로 반환
+    //문자열 형태로 반환ㅎ
 }
