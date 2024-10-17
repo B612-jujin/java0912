@@ -1,5 +1,8 @@
 package chp10.ex10_4;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public class MainShape {
     public static void main(String[] args) {
 
@@ -12,10 +15,14 @@ public class MainShape {
 
         Shape s1 = new Square();
 
-        Shape[] shapes = {s,t,c};
+        ArrayList<Shape> shapes = new ArrayList<>();
+        shapes.add(s);
+        shapes.add(t);
+        shapes.add(c);
 
-        for (int i = 0; i < shapes.length; i++) {
-            System.out.printf("index Number : %d Shape: %s\n",i,shapes[i].name);
+        for (int i = 0; i < shapes.size(); i++) {
+            System.out.printf("index Number : %d Shape: %s\n",i,shapes.get(i).name);
         }
+
     }
 }
