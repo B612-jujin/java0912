@@ -10,9 +10,9 @@ public class JDBCConnector {
 
     //db 들어가기 위해 필요한 것
     //다른 서버 접속일 경우 localhost에 해당 서버의 ip를 넣는다. 그후 포트번호,sid를 넣어서 마무리
-    private static final String URL ="jdbc:oracle:thin:@192.168.24.172:1521/xe";
+    private static final String URL ="jdbc:oracle:thin:@192.168.24.171:1521/xe";
 
-    private static final String USER_NAME = "system";
+    private static final String USER_NAME = "C##Jujin2";
 //c##Jujin2
     private static final String PASSWORD = "1234";
 
