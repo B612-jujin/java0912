@@ -1,22 +1,46 @@
 package jdbc3.controller;
 
-import jdbc.JDBCConnector;
 import jdbc3.entity.Product;
 import jdbc3.repository.ProductRepository;
+import jdbc3.service.ProductService;
+import jdbc3.service.ProductServiceImpl;
+import jdbc3.view.MenuView;
 import jdbc3.view.ProductView;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Objects;
+import java.util.Scanner;
 
 
 public class MainController {
     public static void main(String[] args) {
-        ArrayList<Product> arrayList = ProductRepository.getList();
-        ProductView.printView(arrayList);
+
+        Scanner sc1 = new Scanner(System.in);
+        Scanner sc2 = new Scanner(System.in);
+
+        ProductService productService = new ProductServiceImpl();
+        int menu = MenuView.printMenu(sc1); //메뉴번호를 반환받음
+        switch (menu) {
+            case 1:
+                productService.search(sc1,sc2);
+                break;
+
+            case 2:
+
+
+                break;
+
+            case 3:
+
+
+                break;
+        }
+
+
+
+
+        sc1.close();
+        sc2.close();
+
     }
 
 
