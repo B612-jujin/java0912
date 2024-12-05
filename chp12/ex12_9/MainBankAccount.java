@@ -19,6 +19,7 @@ public class MainBankAccount {
             fw.write(b2.toString()+"\n");
             fw.close();
         } catch (IOException e) {
+            System.out.printf("dd");
             throw new RuntimeException(e);
         }
     }
