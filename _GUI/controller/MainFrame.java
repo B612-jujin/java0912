@@ -7,7 +7,7 @@ import java.awt.*;
 
 public class MainFrame extends JFrame {
 
-    public static final int FRANE_WIDTH = 600;
+    public static final int FRANE_WIDTH = 700;
     public static final int FRANE_HIGHT = 500;
 
 //    public static final int FRANE_X = 300;
@@ -21,15 +21,15 @@ public class MainFrame extends JFrame {
 
         int screenWidth = screenSize.width;
         int screenHeight = screenSize.height;
-        System.out.printf("screenWidth:"+screenWidth/2);
-        System.out.printf("screenHeight:"+screenHeight/2);
+//        System.out.printf("screenWidth:"+screenWidth/2);
+//        System.out.printf("screenHeight:"+screenHeight/2);
 //        setLocation((screenWidth/2)-(FRANE_WIDTH/2), (screenHeight/2)-(FRANE_HIGHT/2));
 
-        setLocation((screenWidth-FRANE_WIDTH)/2, (screenHeight-FRANE_HIGHT)/2);
+
 
         OrderInfoView orderInfoView = new OrderInfoView();
-        add(orderInfoView, BorderLayout.CENTER);
-
+        add(orderInfoView, "Center");
+        setLocation((screenWidth-FRANE_WIDTH)/2, (screenHeight-FRANE_HIGHT)/2);
         setSize(FRANE_WIDTH, FRANE_HIGHT);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

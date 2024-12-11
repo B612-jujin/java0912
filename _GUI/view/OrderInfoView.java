@@ -1,8 +1,15 @@
 package _GUI.view;
 
+import _GUI.entity.OrderEntity;
+import _GUI.repository.OrderRepository;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 public class OrderInfoView extends JPanel{
     JPanel panN = new JPanel(new GridLayout(2,1));
@@ -10,6 +17,7 @@ public class OrderInfoView extends JPanel{
 
     JPanel pan1 = new JPanel();
     JPanel pan2 = new JPanel();
+
     JButton btnSearch = new JButton("검색");
 
     JTextField tfSearch = new JTextField(20);
@@ -23,17 +31,20 @@ public class OrderInfoView extends JPanel{
 
 
     public OrderInfoView(){
-     setLayout(new BorderLayout());//BorderLayout으로 변경
+     setLayout(new BorderLayout(5,10));//BorderLayout으로 변경
 
      //포함시키기
      panN.add(pan1);
      panN.add(pan2);
 
-     add(panN, BorderLayout.NORTH);
-     add(panC, BorderLayout.CENTER);
-
+     add(panN, "North");
+     add(panC, "Center");
      addPan1();
      addPan2();
+     addTable();
+     initList("");
+
+
 
     }
 
@@ -44,20 +55,60 @@ public class OrderInfoView extends JPanel{
 
     public void addPan2(){
         JLabel lblSearch = new JLabel("검색어:");
+        btnSearch.addMouseListener(new MouseAdapter() {
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+            }
+        });
         pan2.add(lblSearch);
         pan2.add(tfSearch);
         pan2.add(btnSearch);
     }
 
     public void addTable(){
-        tableModel = new DefaultTableModel(header,15){
+
+        tableModel = new DefaultTableModel(header,10){
+
             @Override
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
         };
-        table = new JTable(tableModel);
-        JScrollPane scrollPane = new JScrollPane(table);
-        pan2.add(scrollPane);
+
+    table = new JTable(tableModel);
+    TableColumnModel columnModel = table.getColumnModel();
+    columnModel.getColumn(0).setPreferredWidth(50);
+    columnModel.getColumn(1).setPreferredWidth(100);
+    columnModel.getColumn(2).setPreferredWidth(200);
+    columnModel.getColumn(3).setPreferredWidth(50);
+    columnModel.getColumn(4).setPreferredWidth(200);
+    columnModel.getColumn(5).setPreferredWidth(100);
+
+
+
+    JScrollPane scrollPane = new JScrollPane(table);
+    panC.add(scrollPane);
+    }
+
+    public void initList(String serachWord){
+        OrderRepository orderRepository = new OrderRepository();
+        ArrayList<OrderEntity> orderList = orderRepository.getOrderList(serachWord);
+        tableModel.setRowCount(orderList.size());
+
+        int i = 0;
+        for(OrderEntity order : orderList){
+            tableModel.setValueAt(order.getOrderNum(),i,0);
+            tableModel.setValueAt(order.getOrderCustomer(),i,1);
+            tableModel.setValueAt(order.getOrderProduct(),i,2);
+            tableModel.setValueAt(order.getAmount(),i,3);
+            tableModel.setValueAt(order.getDestination(),i,4);
+            tableModel.setValueAt(order.getOrderDate(),i,5);
+
+
+            i++;
+        }
+
     }
 }
